@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, AlertCircle } from 'lucide-react';
+import { X, ExternalLink, AlertCircle, Shield } from 'lucide-react';
 
 interface PaymentPortalModalProps {
   isOpen: boolean;
@@ -8,32 +8,6 @@ interface PaymentPortalModalProps {
 }
 
 const PaymentPortalModal: React.FC<PaymentPortalModalProps> = ({ isOpen, onClose }) => {
-  const [iframeError, setIframeError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIframeError(false);
-      setIsLoading(true);
-      
-      // Set a timeout to detect if iframe fails to load
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
-
-  const handleIframeError = () => {
-    setIframeError(true);
-    setIsLoading(false);
-  };
-
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-  };
-
   const openExternalPortal = () => {
     window.open('https://app.simplicitycollect.com/PaymentPortal.aspx?paymentid', '_blank', 'noopener,noreferrer');
     onClose();
@@ -82,49 +56,31 @@ const PaymentPortalModal: React.FC<PaymentPortalModalProps> = ({ isOpen, onClose
             
             {/* Content */}
             <div className="h-[calc(100%-4rem)] relative">
-              {/* Loading State */}
-              {isLoading && !iframeError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading payment portal...</p>
+              {/* Secure Payment Message */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-50 to-secondary-50">
+                <div className="text-center max-w-md mx-auto p-8">
+                  <div className="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Shield size={40} className="text-primary-600" />
                   </div>
+                  <h4 className="text-2xl font-bold text-primary-800 mb-4">
+                    Secure Payment Portal
+                  </h4>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    For your security and privacy, our payment portal opens in a new, secure window. 
+                    This ensures your payment information is protected with the highest level of encryption.
+                  </p>
+                  <button
+                    onClick={openExternalPortal}
+                    className="btn btn-primary text-lg px-8 py-3 mb-4"
+                  >
+                    <ExternalLink size={24} className="mr-3" />
+                    Open Secure Payment Portal
+                  </button>
+                  <p className="text-sm text-gray-500">
+                    You will be redirected to our secure payment processor
+                  </p>
                 </div>
-              )}
-
-              {/* Error State */}
-              {iframeError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
-                  <div className="text-center max-w-md mx-auto p-8">
-                    <AlertCircle size={64} className="text-orange-500 mx-auto mb-4" />
-                    <h4 className="text-xl font-bold text-gray-800 mb-4">
-                      Unable to Load Payment Portal
-                    </h4>
-                    <p className="text-gray-600 mb-6">
-                      For security reasons, the payment portal cannot be displayed within this page. 
-                      Please click the button below to open it in a new, secure window.
-                    </p>
-                    <button
-                      onClick={openExternalPortal}
-                      className="btn btn-primary"
-                    >
-                      <ExternalLink size={20} className="mr-2" />
-                      Open Secure Payment Portal
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* iframe */}
-              <iframe
-                src="https://app.simplicitycollect.com/PaymentPortal.aspx?paymentid"
-                className={`w-full h-full border-0 ${iframeError ? 'hidden' : ''}`}
-                title="Payment Portal"
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
-                onLoad={handleIframeLoad}
-                onError={handleIframeError}
-                style={{ display: iframeError ? 'none' : 'block' }}
-              />
+              </div>
             </div>
           </motion.div>
         </div>
