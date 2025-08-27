@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CreditCard, MessageCircle } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
+import PaymentPortalModal from '../components/portal/PaymentPortalModal';
 
 const ClientPortalPage: React.FC = () => {
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = React.useState(false);
+
   useEffect(() => {
     document.title = 'Client Portal | United Acquisitions LLC';
   }, []);
@@ -35,14 +38,12 @@ const ClientPortalPage: React.FC = () => {
                   <p className="text-gray-600 mb-6">
                     Make a secure payment through our payment portal
                   </p>
-                  <a 
-                    href="https://app.simplicitycollect.com/PaymentPortal.aspx?paymentid" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <button
+                    onClick={() => setIsPaymentModalOpen(true)}
                     className="btn btn-primary w-full"
                   >
                     Access Payment Portal
-                  </a>
+                  </button>
                 </div>
               </motion.div>
 
@@ -82,6 +83,11 @@ const ClientPortalPage: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      <PaymentPortalModal 
+        isOpen={isPaymentModalOpen} 
+        onClose={() => setIsPaymentModalOpen(false)} 
+      />
     </>
   );
 };
