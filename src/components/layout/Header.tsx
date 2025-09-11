@@ -49,7 +49,7 @@ const Header: React.FC = () => {
               alt="United Acquisitions LLC Logo" 
               className="h-10 w-auto object-contain"
             />
-            <span>United Acquisitions</span>
+            <span></span>
           </Link>
 
           {/* Desktop Navigation */}
