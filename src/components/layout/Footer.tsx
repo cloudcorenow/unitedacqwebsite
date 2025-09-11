@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
                 alt="United Acquisitions LLC Logo" 
                 className="h-8 w-auto object-contain brightness-0 invert"
               />
-              <span>United Acquisitions</span>
+              <span></span>
             </Link>
             <p className="text-gray-300 mb-4">
               Professional debt collection and recovery services with integrity, compliance, and exceptional results.
