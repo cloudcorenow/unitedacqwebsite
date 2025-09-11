@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
               <img 
                 src="/unitedlogo.jpg" 
                 alt="United Acquisitions LLC Logo" 
-                className="h-8 w-auto object-contain brightness-0 invert"
+                className="h-8 w-auto object-contain filter brightness-0 invert"
               />
               <span></span>
             </Link>
