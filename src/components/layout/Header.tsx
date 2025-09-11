@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Building2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavItem } from '../../types';
 
 const navItems: NavItem[] = [
@@ -43,8 +43,12 @@ const Header: React.FC = () => {
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="container-custom">
         <nav className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary-800">
-            <Building2 size={32} className="text-secondary-600" />
+          <Link to="/" className="flex items-center gap-3 text-2xl font-bold text-primary-800">
+            <img 
+              src="/unitedlogo.jpg" 
+              alt="United Acquisitions LLC Logo" 
+              className="h-10 w-auto object-contain"
+            />
             <span>United Acquisitions</span>
           </Link>
 

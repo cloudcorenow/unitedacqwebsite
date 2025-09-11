@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Building2, Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -11,8 +11,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white mb-4">
-              <Building2 size={24} className="text-secondary-500" />
+            <Link to="/" className="flex items-center gap-3 text-xl font-bold text-white mb-4">
+              <img 
+                src="/unitedlogo.jpg" 
+                alt="United Acquisitions LLC Logo" 
+                className="h-8 w-auto object-contain brightness-0 invert"
+              />
               <span>United Acquisitions</span>
             </Link>
             <p className="text-gray-300 mb-4">
