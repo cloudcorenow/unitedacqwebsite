@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { ContactInfo as ContactInfoType } from '../../types';
 
 const contactInfo: ContactInfoType = {
-  address: "P.O. Box 433, Orange, CA 92856",
+  address: "1111 E. Katella Ave Suite 270, Orange, CA 92867",
   phone: "855-555-1234",
   email: "info@unitedacq.com",
   hours: "Monday - Friday: 8:00 AM - 6:00 PM CT"
