@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CreditCard, Building, FileText, LineChart, BarChart, Clock, ShieldCheck, Users, ArrowRight } from 'lucide-react';
+import { CreditCard, Building, FileText, LineChart, Clock, ShieldCheck, Users, ArrowRight } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import SectionTitle from '../components/common/SectionTitle';
 import CTA from '../components/home/CTA';
@@ -96,17 +96,6 @@ const ServicesPage: React.FC = () => {
         "Custom collection strategies by segment",
         "Regular performance reporting",
         "Ongoing portfolio optimization"
-      ]
-    },
-    {
-      icon: <BarChart size={40} />,
-      title: "Analytics & Reporting",
-      description: "Gain valuable insights into your accounts receivable with our detailed analytics and reporting tools.",
-      features: [
-        "Custom dashboards and reporting",
-        "Recovery trend analysis",
-        "Performance benchmarking",
-        "Strategic recommendations"
       ]
     },
     {
