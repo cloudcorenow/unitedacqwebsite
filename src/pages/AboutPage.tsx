@@ -41,7 +41,7 @@ const AboutPage: React.FC = () => {
                   We understand that every financial situation is unique, which is why our experienced team works closely with consumers to find the most effective path forward—whether through structured payment plans, settlements, or other customized solutions that align with their current circumstances. By fostering open communication and employing a strategic, results-oriented approach, we help clients recover outstanding balances efficiently while ensuring a positive experience for all parties involved.
                 </p>
                 <p>
-                  Our dedicated accounts receivable and legal teams work tirelessly to provide strategic, compliant, and ethical debt resolution services. Additionally, we ensure accurate credit bureau trade line updates, reinforcing our commitment to transparency, fairness, and regulatory compliance.
+                 Our dedicated accounts receivable team delivers strategic, ethical, and compliant debt resolution services. We also ensure accurate credit bureau trade line updates, underscoring our commitment to transparency, fairness, and regulatory compliance.
                 </p>
                 <p className="text-lg font-medium text-primary-700">
                   Let us help you navigate the path to financial resolution with confidence and achieve the results you deserve.
