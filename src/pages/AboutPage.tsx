@@ -67,7 +67,6 @@ const AboutPage: React.FC = () => {
       </section>
       
       <Values />
-      <Team />
       <CTA />
     </>
   );
