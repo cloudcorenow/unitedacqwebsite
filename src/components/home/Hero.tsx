@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-gray-200 mb-8"
           >
-            Our experienced team works diligently to resolve outstanding balances through customized payment solutions, ensuring positive outcomes for both creditors and debtors while maintaining accurate credit reporting.
+            Our experienced team works diligently to resolve outstanding balances through customized payment solutions, ensuring positive outcomes for consumers while maintaining accurate credit reporting.
           </motion.p>
           
           <motion.div 
