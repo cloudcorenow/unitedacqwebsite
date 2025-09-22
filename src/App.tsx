@@ -12,7 +12,6 @@ import ServicesPage from './pages/ServicesPage';
 import ResourcesPage from './pages/ResourcesPage';
 import ContactPage from './pages/ContactPage';
 import LegalPage from './pages/LegalPage';
-import ClientPortalPage from './pages/ClientPortalPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
             <Route path="resources" element={<ResourcesPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="legal" element={<LegalPage />} />
-            <Route path="portal" element={<ClientPortalPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

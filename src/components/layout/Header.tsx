@@ -65,9 +65,6 @@ const Header: React.FC = () => {
                 {item.label}
               </NavLink>
             ))}
-            <Link to="/portal" className="ml-4 btn btn-primary">
-              Client Portal
-            </Link>
           </div>
 
           {/* Mobile Navigation Toggle */}
@@ -95,9 +92,6 @@ const Header: React.FC = () => {
                   {item.label}
                 </NavLink>
               ))}
-              <Link to="/portal" className="btn btn-primary mt-4 text-center">
-                Client Portal
-              </Link>
             </div>
           </div>
         )}
