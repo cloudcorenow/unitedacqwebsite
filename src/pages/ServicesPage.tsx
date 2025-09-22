@@ -134,7 +134,7 @@ const ServicesPage: React.FC = () => {
     {
       icon: <Users size={40} />,
       title: "Skip Tracing",
-      description: "Locate hard-to-find debtors with our advanced skip tracing techniques and resources.",
+      description: "Locate hard-to-find consumers with our advanced skip tracing techniques and resources.",
       features: [
         "Multiple database searches",
         "Social media investigation",
@@ -242,7 +242,7 @@ const ServicesPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-white mb-2">Reporting & Remittance</h3>
                     <p className="text-gray-300">
                       We provide detailed reporting on all collection activities and prompt remittance of recovered funds to our clients.
-                    </p>
+                    We implement a multi-channel contact strategy to reach consumers and work to establish payment arrangements that are reasonable for all parties.
                   </div>
                 </div>
               </div>

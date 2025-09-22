@@ -50,7 +50,7 @@ const Values: React.FC = () => {
     {
       icon: <BookOpen size={24} />,
       title: "Education",
-      description: "We believe in educating debtors about their options and rights, fostering cooperative resolution and mutual understanding."
+      description: "We believe in educating consumers about their options and rights, fostering cooperative resolution and mutual understanding."
     },
     {
       icon: <Users size={24} />,

@@ -7,7 +7,7 @@ const faqs: FAQ[] = [
   {
     id: 1,
     question: "What is the Fair Debt Collection Practices Act (FDCPA)?",
-    answer: "The FDCPA is a federal law that limits the behavior and actions of third-party debt collectors who are attempting to collect debts on behalf of another person or entity. The law restricts the means and methods that collection agencies can use and requires them to treat debtors fairly."
+    answer: "The FDCPA is a federal law that limits the behavior and actions of third-party debt collectors who are attempting to collect debts on behalf of another person or entity. The law restricts the means and methods that collection agencies can use and requires them to treat consumers fairly."
   },
   {
     id: 2,
@@ -27,12 +27,12 @@ const faqs: FAQ[] = [
   {
     id: 5,
     question: "How quickly can I expect to see results?",
-    answer: "The timeline for recovery varies depending on several factors, including the age of the debt, debtor contact information quality, and the nature of the debt. We typically see significant results within the first 30-90 days, with collections continuing for several months."
+    answer: "The timeline for recovery varies depending on several factors, including the age of the debt, consumer contact information quality, and the nature of the debt. We typically see significant results within the first 30-90 days, with collections continuing for several months."
   },
   {
     id: 6,
     question: "What information do I need to provide to start collections?",
-    answer: "To begin the collection process, we'll need basic account information such as debtor name, contact information, amount owed, date of service/purchase, any previous collection attempts, and any supporting documentation (contracts, invoices, statements, etc.)."
+    answer: "To begin the collection process, we'll need basic account information such as consumer name, contact information, amount owed, date of service/purchase, any previous collection attempts, and any supporting documentation (contracts, invoices, statements, etc.)."
   }
 ];
 
