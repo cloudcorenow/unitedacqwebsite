@@ -35,7 +35,7 @@ const CTA: React.FC = () => {
             </Link>
             <a href="tel:+18555551234" className="btn bg-white text-primary-800 hover:bg-gray-100 text-lg">
               <PhoneCall size={20} className="mr-2" />
-              855-555-1234
+              800-604-4310
             </a>
           </motion.div>
         </div>
