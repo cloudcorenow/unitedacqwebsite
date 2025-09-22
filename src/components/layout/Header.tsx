@@ -59,7 +59,9 @@ const Header: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) => 
-                  isActive ? 'nav-link nav-link-active' : 'nav-link'
+                 isActive 
+                   ? 'px-4 py-2 bg-secondary-600 text-white rounded-md font-medium transition-all duration-200 hover:bg-secondary-700' 
+                   : 'nav-link'
                 }
               >
                 {item.label}
@@ -86,7 +88,9 @@ const Header: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={({ isActive }) => 
-                    isActive ? 'nav-link nav-link-active' : 'nav-link'
+                   isActive 
+                     ? 'px-4 py-2 bg-secondary-600 text-white rounded-md font-medium transition-all duration-200 hover:bg-secondary-700' 
+                     : 'nav-link'
                   }
                 >
                   {item.label}
