@@ -35,32 +35,32 @@ const Values: React.FC = () => {
     {
       icon: <Heart size={24} />,
       title: "Integrity",
-      description: "We conduct our business with honesty, transparency, and a commitment to doing what's right for all parties involved in the debt recovery process."
+      description: "We act with honesty and transparency, ensuring every interaction builds trust and reflects ethical practices."
     },
     {
       icon: <Shield size={24} />,
       title: "Compliance",
-      description: "We adhere to all legal and regulatory requirements, maintaining the highest standards of ethical conduct in every interaction."
+      description: "We uphold the highest regulatory and legal standards, protecting our clients and ensuring fairness for consumers."
     },
     {
-      icon: <Briefcase size={24} />,
-      title: "Professionalism",
-      description: "Our team maintains a respectful and courteous approach in all interactions, representing our clients with dignity and expertise."
+      icon: <Heart size={24} />,
+      title: "Respect",
+      description: "We treat all individuals with dignity, maintaining professionalism in every engagement."
     },
     {
-      icon: <BookOpen size={24} />,
-      title: "Education",
-      description: "We believe in educating consumers about their options and rights, fostering cooperative resolution and mutual understanding."
-    },
-    {
-      icon: <Users size={24} />,
-      title: "Partnership",
-      description: "We view our client relationships as long-term partnerships, aligning our goals with your business objectives for mutual success."
+      icon: <Shield size={24} />,
+      title: "Accountability",
+      description: "We take responsibility for our actions, delivering consistent results while safeguarding client reputations."
     },
     {
       icon: <Zap size={24} />,
       title: "Innovation",
-      description: "We continuously improve our methods and technology to deliver more effective and efficient recovery solutions for our clients."
+      description: "We embrace new technology and strategies to achieve smarter, faster, and more effective recovery solutions."
+    },
+    {
+      icon: <Users size={24} />,
+      title: "Partnership",
+      description: "We view client relationships as long-term alliances, aligning our efforts with their goals for shared success."
     }
   ];
   
