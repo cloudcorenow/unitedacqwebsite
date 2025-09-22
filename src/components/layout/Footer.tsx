@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -17,17 +17,6 @@ const Footer: React.FC = () => {
             <p className="text-gray-300 mb-4">
               Professional debt collection and recovery services with integrity, compliance, and exceptional results.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-secondary-500 transition-colors" aria-label="Facebook">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-secondary-500 transition-colors" aria-label="Twitter">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-secondary-500 transition-colors" aria-label="LinkedIn">
-                <Linkedin size={20} />
-              </a>
-            </div>
           </div>
           
           {/* Quick Links */}
