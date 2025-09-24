@@ -40,6 +40,11 @@ const Services: React.FC = () => {
       description: "Recover outstanding consumer debts with our ethical and compliant collection practices that preserve customer relationships."
     },
     {
+      icon: <Clock size={40} />,
+      title: "Early Intervention",
+      description: "Prevent delinquencies from becoming defaults with our early intervention services and payment reminders."
+    },
+    {
       icon: <Building size={40} />,
       title: "Commercial Collections",
       description: "Specialized B2B debt recovery services to help your business maintain healthy cash flow and business relationships."
