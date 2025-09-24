@@ -45,11 +45,6 @@ const Services: React.FC = () => {
       description: "Specialized B2B debt recovery services to help your business maintain healthy cash flow and business relationships."
     },
     {
-      icon: <FileText size={40} />,
-      title: "Legal Collections",
-      description: "When necessary, our network of attorneys can pursue legal action to recover debts through litigation and judgments."
-    },
-    {
       icon: <LineChart size={40} />,
       title: "Portfolio Management",
       description: "Comprehensive analysis and management of your receivables portfolio to maximize recovery rates."
