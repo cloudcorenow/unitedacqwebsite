@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CreditCard, FileText, Building, LineChart, ArrowRight } from 'lucide-react';
+import { CreditCard, Clock, Building, LineChart, ArrowRight } from 'lucide-react';
 import SectionTitle from '../common/SectionTitle';
 
 interface ServiceCardProps {

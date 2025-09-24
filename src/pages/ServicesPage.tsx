@@ -77,17 +77,6 @@ const ServicesPage: React.FC = () => {
       ]
     },
     {
-      icon: <FileText size={40} />,
-      title: "Legal Collections",
-      description: "When necessary, our network of attorneys can pursue legal action to recover debts through litigation and judgments.",
-      features: [
-        "Nationwide attorney network",
-        "Pre-litigation review and assessment",
-        "Court representation when necessary",
-        "Post-judgment enforcement strategies"
-      ]
-    },
-    {
       icon: <LineChart size={40} />,
       title: "Portfolio Management",
       description: "Comprehensive analysis and management of your receivables portfolio to maximize recovery rates.",
