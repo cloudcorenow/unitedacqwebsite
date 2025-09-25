@@ -32,6 +32,7 @@ const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string>('');
   const [captchaError, setCaptchaError] = useState<string>('');
+  const [widgetId, setWidgetId] = useState<string>('');
   
   // Cloudflare Turnstile site key (demo key - replace with your actual site key)
   const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
@@ -39,8 +40,8 @@ const ContactForm: React.FC = () => {
   React.useEffect(() => {
     // Initialize Turnstile when component mounts
     const initTurnstile = () => {
-      if (window.turnstile && document.getElementById('turnstile-widget')) {
-        window.turnstile.render('#turnstile-widget', {
+      if (window.turnstile && document.getElementById('turnstile-widget') && !widgetId) {
+        const id = window.turnstile.render('#turnstile-widget', {
           sitekey: TURNSTILE_SITE_KEY,
           callback: (token: string) => {
             setCaptchaToken(token);
@@ -57,6 +58,7 @@ const ContactForm: React.FC = () => {
           theme: 'light',
           size: 'normal'
         });
+        setWidgetId(id);
       }
     };
 
@@ -74,6 +76,15 @@ const ContactForm: React.FC = () => {
       return () => clearInterval(checkTurnstile);
     }
   }, []);
+
+  // Cleanup function to remove widget on unmount
+  React.useEffect(() => {
+    return () => {
+      if (window.turnstile && widgetId) {
+        window.turnstile.remove(widgetId);
+      }
+    };
+  }, [widgetId]);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -107,7 +118,7 @@ const ContactForm: React.FC = () => {
       
       // Reset CAPTCHA
       if (window.turnstile) {
-        window.turnstile.reset();
+        window.turnstile.reset(widgetId);
       }
     }, 1000);
   };
