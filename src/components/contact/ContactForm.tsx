@@ -2,6 +2,24 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
 
+// Declare Turnstile types
+declare global {
+  interface Window {
+    turnstile: {
+      render: (element: string | HTMLElement, options: {
+        sitekey: string;
+        callback?: (token: string) => void;
+        'error-callback'?: () => void;
+        'expired-callback'?: () => void;
+        theme?: 'light' | 'dark' | 'auto';
+        size?: 'normal' | 'compact';
+      }) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
+    };
+  }
+}
+
 const ContactForm: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -12,6 +30,50 @@ const ContactForm: React.FC = () => {
   });
   
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string>('');
+  const [captchaError, setCaptchaError] = useState<string>('');
+  
+  // Cloudflare Turnstile site key (demo key - replace with your actual site key)
+  const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
+  
+  React.useEffect(() => {
+    // Initialize Turnstile when component mounts
+    const initTurnstile = () => {
+      if (window.turnstile && document.getElementById('turnstile-widget')) {
+        window.turnstile.render('#turnstile-widget', {
+          sitekey: TURNSTILE_SITE_KEY,
+          callback: (token: string) => {
+            setCaptchaToken(token);
+            setCaptchaError('');
+          },
+          'error-callback': () => {
+            setCaptchaError('CAPTCHA verification failed. Please try again.');
+            setCaptchaToken('');
+          },
+          'expired-callback': () => {
+            setCaptchaError('CAPTCHA expired. Please verify again.');
+            setCaptchaToken('');
+          },
+          theme: 'light',
+          size: 'normal'
+        });
+      }
+    };
+
+    // Wait for Turnstile script to load
+    if (window.turnstile) {
+      initTurnstile();
+    } else {
+      const checkTurnstile = setInterval(() => {
+        if (window.turnstile) {
+          initTurnstile();
+          clearInterval(checkTurnstile);
+        }
+      }, 100);
+      
+      return () => clearInterval(checkTurnstile);
+    }
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,12 +82,21 @@ const ContactForm: React.FC = () => {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate CAPTCHA
+    if (!captchaToken) {
+      setCaptchaError('Please complete the CAPTCHA verification.');
+      return;
+    }
+    
     // In a real implementation, you would send the form data to your backend
-    console.log('Form submitted:', formState);
+    console.log('Form submitted:', { ...formState, captchaToken });
     
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitted(true);
+      setCaptchaToken('');
+      setCaptchaError('');
       setFormState({
         name: '',
         email: '',
@@ -33,6 +104,11 @@ const ContactForm: React.FC = () => {
         company: '',
         message: '',
       });
+      
+      // Reset CAPTCHA
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
     }, 1000);
   };
   
@@ -138,6 +214,17 @@ const ContactForm: React.FC = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
               placeholder="How can we help you?"
             ></textarea>
+          </div>
+          
+          {/* Cloudflare Turnstile CAPTCHA */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-medium mb-2">
+              Security Verification*
+            </label>
+            <div id="turnstile-widget" className="mb-2"></div>
+            {captchaError && (
+              <p className="text-error-500 text-sm">{captchaError}</p>
+            )}
           </div>
           
           <div className="text-center md:text-right">
