@@ -33,6 +33,7 @@ const ContactForm: React.FC = () => {
   const [captchaToken, setCaptchaToken] = useState<string>('');
   const [captchaError, setCaptchaError] = useState<string>('');
   const [widgetId, setWidgetId] = useState<string>('');
+  const [isWidgetRendered, setIsWidgetRendered] = useState<boolean>(false);
   
   // Cloudflare Turnstile site key (demo key - replace with your actual site key)
   const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
@@ -40,7 +41,11 @@ const ContactForm: React.FC = () => {
   React.useEffect(() => {
     // Initialize Turnstile when component mounts
     const initTurnstile = () => {
-      if (window.turnstile && document.getElementById('turnstile-widget') && !widgetId) {
+      const widgetElement = document.getElementById('turnstile-widget');
+      if (window.turnstile && widgetElement && !isWidgetRendered) {
+        // Clear any existing content in the widget container
+        widgetElement.innerHTML = '';
+        
         const id = window.turnstile.render('#turnstile-widget', {
           sitekey: TURNSTILE_SITE_KEY,
           callback: (token: string) => {
@@ -59,6 +64,7 @@ const ContactForm: React.FC = () => {
           size: 'normal'
         });
         setWidgetId(id);
+        setIsWidgetRendered(true);
       }
     };
 
@@ -80,11 +86,12 @@ const ContactForm: React.FC = () => {
   // Cleanup function to remove widget on unmount
   React.useEffect(() => {
     return () => {
-      if (window.turnstile && widgetId) {
+      if (window.turnstile && widgetId && isWidgetRendered) {
         window.turnstile.remove(widgetId);
+        setIsWidgetRendered(false);
       }
     };
-  }, [widgetId]);
+  }, [widgetId, isWidgetRendered]);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -110,6 +117,7 @@ const ContactForm: React.FC = () => {
       setCaptchaError('');
       setFormState({
         name: '',
+        name: '',
         email: '',
         phone: '',
         company: '',
@@ -118,7 +126,10 @@ const ContactForm: React.FC = () => {
       
       // Reset CAPTCHA
       if (window.turnstile) {
-        window.turnstile.reset(widgetId);
+        const widgetElement = document.getElementById('turnstile-widget');
+        if (widgetElement) {
+          window.turnstile.reset(widgetId);
+        }
       }
     }, 1000);
   };
