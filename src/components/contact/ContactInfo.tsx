@@ -5,7 +5,7 @@ import { ContactInfo as ContactInfoType } from '../../types';
 const contactInfo: ContactInfoType = {
   address: "1111 E. Katella Ave Suite 270, Orange, CA 92867",
   phone: "800-604-4310",
-  email: "frank@unitedacq.com",
+  email: "info@unitedacq.com",
   hours: "Monday - Friday: 8:00 AM - 6:00 PM PST"
 };
 
