@@ -59,7 +59,7 @@ const LegalPage: React.FC = () => {
                 <ul className="list-disc pl-6 mb-6">
                   <li>Replying "STOP" to any text message you receive from us.</li>
                   <li>Calling our customer service at (800)-604-4310.</li>
-                  <li>Emailing frank@unitedacq.com with the subject line "Opt-Out of Text Messages", including your full name, phone number, and a request to stop SMS communications.</li>
+                  <li>Emailing info@unitedacq.com with the subject line "Opt-Out of Text Messages", including your full name, phone number, and a request to stop SMS communications.</li>
                 </ul>
 
                 <h4 className="text-lg font-bold text-primary-800 mb-3">Certification of Phone Number Ownership</h4>
