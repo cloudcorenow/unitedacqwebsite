@@ -1,5 +1,3 @@
-import { Resend } from 'resend';
-
 interface Env {
   ASSETS: Fetcher;
   RESEND_API_KEY: string;
@@ -106,14 +104,18 @@ async function handleContactSubmission(data: ContactFormData, env: Env): Promise
     );
   }
 
-  const resend = new Resend(env.RESEND_API_KEY);
-
   try {
-    const emailResult = await resend.emails.send({
-      from: 'United Acquisitions Contact Form <noreply@notifications.unitedacq.com>',
-      to: ['info@unitedacq.com'],
-      subject: `New Contact Form Submission from ${data.name}`,
-      html: `
+    const emailResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'United Acquisitions Contact Form <noreply@notifications.unitedacq.com>',
+        to: ['info@unitedacq.com'],
+        subject: `New Contact Form Submission from ${data.name}`,
+        html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2A5F9E; border-bottom: 2px solid #E5C93C; padding-bottom: 10px;">
             New Contact Form Submission
@@ -139,7 +141,7 @@ async function handleContactSubmission(data: ContactFormData, env: Env): Promise
           </div>
         </div>
       `,
-      text: `
+        text: `
 New Contact Form Submission
 
 Name: ${data.name}
@@ -152,7 +154,24 @@ ${data.message}
 
 Submitted: ${new Date().toLocaleString()}
       `,
+      }),
     });
+
+    const emailResult = await emailResponse.json();
+
+    if (!emailResponse.ok) {
+      console.error('Resend API error:', emailResult);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Failed to send email',
+        }),
+        {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
+    }
 
     return new Response(
       JSON.stringify({ success: true, data: emailResult }),
