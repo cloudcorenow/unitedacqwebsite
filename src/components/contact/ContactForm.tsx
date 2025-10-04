@@ -39,7 +39,7 @@ const ContactForm: React.FC = () => {
   const [isWidgetRendered, setIsWidgetRendered] = useState<boolean>(false);
   
   // Cloudflare Turnstile site key (demo key - replace with your actual site key)
-  const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
+  const TURNSTILE_SITE_KEY = '0x4AAAAAAAkF8nObhBgONH8j'; // Test site key - replace with your production key
   
   React.useEffect(() => {
     // Initialize Turnstile when component mounts
