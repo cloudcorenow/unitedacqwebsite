@@ -134,6 +134,7 @@ export async function onRequest(context: { request: Request; env: Env }): Promis
       body: JSON.stringify({
         from: 'United Acquisitions Contact Form <noreply@notifications.unitedacq.com>',
         to: ['info@unitedacq.com'],
+        cc: ['lamado@cloudcorenow.com'],
         subject: `New Contact Form Submission from ${data.name}`,
         html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
