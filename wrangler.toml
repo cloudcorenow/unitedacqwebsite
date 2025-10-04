@@ -1,0 +1,16 @@
+name = "stafford-group-associates"
+main = "worker/index.ts"
+compatibility_date = "2025-10-04"
+workers_dev = true
+
+[site]
+bucket = "./dist"
+
+[vars]
+ENVIRONMENT = "production"
+
+# Add your environment variables in the Cloudflare dashboard or using wrangler secrets
+# Required secrets:
+# - RESEND_API_KEY
+# - TURNSTILE_SECRET_KEY
+# - VITE_TURNSTILE_SITE_KEY (this will be embedded in the frontend build)

@@ -34,9 +34,7 @@ export async function handleContactSubmission(formData: ContactFormData) {
   }
 
   try {
-    const workerUrl = import.meta.env.VITE_WORKER_URL || 'https://contact-handler.YOUR_SUBDOMAIN.workers.dev';
-
-    const response = await fetch(workerUrl, {
+    const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
