@@ -103,9 +103,16 @@ Deno.serve(async (req: Request) => {
 
     const turnstileResult = await turnstileResponse.json();
 
+    console.log("Turnstile verification result:", turnstileResult);
+
     if (!turnstileResult.success) {
+      console.error("Turnstile verification failed:", turnstileResult);
       return new Response(
-        JSON.stringify({ success: false, error: "CAPTCHA verification failed" }),
+        JSON.stringify({
+          success: false,
+          error: "CAPTCHA verification failed",
+          details: turnstileResult["error-codes"] || []
+        }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
