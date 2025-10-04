@@ -5,12 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:worker",
-    "build:worker": "wrangler deploy --dry-run --outdir=.wrangler",
-    "deploy": "npm run build && wrangler deploy",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "wrangler dev",
-    "cf:dev": "wrangler dev"
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^11.0.3",
