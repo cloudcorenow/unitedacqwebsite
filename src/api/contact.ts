@@ -54,9 +54,13 @@ export async function handleContactSubmission(formData: ContactFormData) {
         message: 'Thank you for your message. We will contact you shortly.'
       };
     } else {
+      console.error('Backend error:', result);
+      const errorMessage = result.details && result.details.length > 0
+        ? `CAPTCHA Error: ${result.details.join(', ')}`
+        : result.error || 'Failed to send message. Please try again.';
       return {
         success: false,
-        error: result.error || 'Failed to send message. Please try again.'
+        error: errorMessage
       };
     }
   } catch (error) {
