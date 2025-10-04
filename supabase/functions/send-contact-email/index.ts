@@ -130,7 +130,7 @@ Deno.serve(async (req: Request) => {
 
     // Send email via Resend
     const emailResult = await resend.emails.send({
-      from: "United Acquisitions Contact Form <noreply@unitedacq.com>",
+      from: "United Acquisitions Contact Form <noreply@notifications.unitedacq.com>",
       to: ["info@unitedacq.com"],
       subject: `New Contact Form Submission from ${data.name}`,
       html: `
