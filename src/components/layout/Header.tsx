@@ -47,7 +47,7 @@ const Header: React.FC = () => {
             <img
               src="/unitedacklogo.png"
               alt="United Acquisitions LLC Logo"
-              className="h-16 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
             <span></span>
           </Link>
