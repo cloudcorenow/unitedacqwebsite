@@ -39,7 +39,7 @@ const ContactForm: React.FC = () => {
   const [isWidgetRendered, setIsWidgetRendered] = useState<boolean>(false);
   
   // Cloudflare Turnstile site key from environment variables
-  const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAAAkF8nObhBgONH8j';
+  const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAAB4xQZgLpuzwzbjM';
   
   React.useEffect(() => {
     // Initialize Turnstile when component mounts
