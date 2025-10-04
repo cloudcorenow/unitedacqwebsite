@@ -2,6 +2,7 @@ name = "stafford-group-associates"
 main = "worker/index.ts"
 compatibility_date = "2025-10-04"
 workers_dev = true
+compatibility_flags = ["nodejs_compat"]
 
 [site]
 bucket = "./dist"
