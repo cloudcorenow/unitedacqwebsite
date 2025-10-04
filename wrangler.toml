@@ -1,4 +1,4 @@
-name = "stafford-group-associates"
+name = "unitedack"
 main = "worker/index.ts"
 compatibility_date = "2025-10-04"
 workers_dev = true
