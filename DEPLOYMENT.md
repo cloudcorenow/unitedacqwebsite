@@ -1,20 +1,16 @@
 # Deployment Guide
 
-## Cloudflare Worker Setup
+## Single Cloudflare Worker Deployment
 
-### 1. Deploy the Contact Handler Worker
+This project runs entirely on a single Cloudflare Worker that serves both the static frontend assets and handles the contact form API endpoint.
+
+### 1. Login to Cloudflare
 
 ```bash
-cd workers/contact-handler
-npm install
 npx wrangler login
-npx wrangler deploy
 ```
 
-After deployment, you'll get a worker URL like:
-`https://contact-handler.YOUR_SUBDOMAIN.workers.dev`
-
-### 2. Add Secrets to the Worker
+### 2. Add Secrets
 
 ```bash
 npx wrangler secret put RESEND_API_KEY
@@ -24,43 +20,33 @@ npx wrangler secret put TURNSTILE_SECRET_KEY
 # Enter: your_turnstile_secret_key
 ```
 
-### 3. Update Environment Variables
+### 3. Deploy
 
-Create `.env.local` in the project root:
+```bash
+npm run deploy
+```
+
+This command will:
+1. Build your React frontend (`npm run build`)
+2. Deploy the worker with static assets (`wrangler deploy`)
+
+Your site will be available at:
+`https://stafford-group-associates.YOUR_SUBDOMAIN.workers.dev`
+
+### 4. Add Custom Domain (Optional)
+
+In Cloudflare Dashboard:
+1. Go to Workers & Pages → stafford-group-associates
+2. Click "Settings" → "Triggers"
+3. Add your custom domain
+
+## Environment Variables
+
+Create `.env.local` for local development:
 
 ```env
-VITE_WORKER_URL=https://contact-handler.YOUR_SUBDOMAIN.workers.dev
 VITE_TURNSTILE_SITE_KEY=your_turnstile_site_key_here
 ```
-
-## Cloudflare Pages Setup
-
-### 1. Deploy the Frontend
-
-```bash
-npm run build
-```
-
-Then either:
-
-**Option A: Git-based deployment**
-1. Push to GitHub
-2. Go to Cloudflare Dashboard → Pages
-3. Connect your repository
-4. Set build command: `npm run build`
-5. Set output directory: `dist`
-
-**Option B: Direct upload**
-```bash
-npx wrangler pages deploy dist
-```
-
-### 2. Add Environment Variables to Pages
-
-In Cloudflare Dashboard → Pages → Your Project → Settings → Environment Variables:
-
-- `VITE_WORKER_URL`: `https://contact-handler.YOUR_SUBDOMAIN.workers.dev`
-- `VITE_TURNSTILE_SITE_KEY`: `your_turnstile_site_key`
 
 ## Resend Configuration
 
@@ -69,11 +55,20 @@ In your Resend dashboard:
 2. Add DNS records provided by Resend
 3. Wait for verification (usually takes a few minutes)
 
-## Testing
+## Local Development
 
-Test the contact form locally:
+For local development, the contact form will fail because it needs the Cloudflare Worker environment. To test locally with the worker:
+
 ```bash
-npm run dev
+npm run build
+npx wrangler dev
 ```
 
-Then visit http://localhost:5173/contact and submit a test message.
+This will run the worker locally at `http://localhost:8787`
+
+## Architecture
+
+- **Static Assets**: Served from `/dist` folder via Workers Sites
+- **API Endpoint**: `/api/contact` handled by the same worker
+- **Email Sending**: Via Resend API
+- **CAPTCHA**: Cloudflare Turnstile verification
