@@ -44,9 +44,9 @@ const Header: React.FC = () => {
       <div className="container-custom">
         <nav className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 text-2xl font-bold text-primary-800">
-            <img 
-              src="/unitedlogo.jpg" 
-              alt="United Acquisitions LLC Logo" 
+            <img
+              src="/unitedacklogo.png"
+              alt="United Acquisitions LLC Logo"
               className="h-16 w-auto object-contain"
             />
             <span></span>
