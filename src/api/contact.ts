@@ -34,14 +34,12 @@ export async function handleContactSubmission(formData: ContactFormData) {
   }
 
   try {
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    const workerUrl = import.meta.env.VITE_WORKER_URL || 'https://contact-handler.YOUR_SUBDOMAIN.workers.dev';
 
-    const response = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+    const response = await fetch(workerUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${supabaseKey}`,
       },
       body: JSON.stringify(formData),
     });
