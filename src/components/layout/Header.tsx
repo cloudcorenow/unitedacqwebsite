@@ -40,14 +40,14 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-3'}`}>
       <div className="container-custom">
         <nav className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 text-2xl font-bold text-primary-800">
             <img
               src="/unitedacklogo.png"
               alt="United Acquisitions LLC Logo"
-              className="h-20 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
             <span></span>
           </Link>
