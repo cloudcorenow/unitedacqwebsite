@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
+import { handleContactSubmission } from '../../api/contact';
 
 // Declare Turnstile types
 declare global {
@@ -32,6 +33,8 @@ const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string>('');
   const [captchaError, setCaptchaError] = useState<string>('');
+  const [submitError, setSubmitError] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [widgetId, setWidgetId] = useState<string>('');
   const [isWidgetRendered, setIsWidgetRendered] = useState<boolean>(false);
   
@@ -96,9 +99,11 @@ const ContactForm: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
+    // Clear errors when user starts typing
+    if (submitError) setSubmitError('');
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate CAPTCHA
@@ -107,31 +112,43 @@ const ContactForm: React.FC = () => {
       return;
     }
     
-    // In a real implementation, you would send the form data to your backend
-    console.log('Form submitted:', { ...formState, captchaToken });
+    setIsSubmitting(true);
+    setSubmitError('');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setCaptchaToken('');
-      setCaptchaError('');
-      setFormState({
-        name: '',
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: '',
+    try {
+      const result = await handleContactSubmission({
+        ...formState,
+        captchaToken
       });
-      
-      // Reset CAPTCHA
-      if (window.turnstile) {
-        const widgetElement = document.getElementById('turnstile-widget');
-        if (widgetElement) {
-          window.turnstile.reset(widgetId);
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setCaptchaToken('');
+        setCaptchaError('');
+        setFormState({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+        });
+        
+        // Reset CAPTCHA
+        if (window.turnstile) {
+          const widgetElement = document.getElementById('turnstile-widget');
+          if (widgetElement) {
+            window.turnstile.reset(widgetId);
+          }
         }
+      } else {
+        setSubmitError(result.error || 'Failed to send message. Please try again.');
       }
-    }, 1000);
+    } catch (error) {
+      setSubmitError('An unexpected error occurred. Please try again later.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -147,7 +164,7 @@ const ContactForm: React.FC = () => {
           </div>
           <h3 className="text-2xl font-bold text-primary-800 mb-2">Thank You!</h3>
           <p className="text-gray-600 mb-6">
-            Your message has been received. One of our representatives will contact you shortly.
+            Your message has been sent successfully. One of our representatives will contact you shortly.
           </p>
           <button
             onClick={() => setIsSubmitted(false)}
@@ -158,6 +175,12 @@ const ContactForm: React.FC = () => {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit}>
+          {submitError && (
+            <div className="mb-6 p-4 bg-error-50 border border-error-200 rounded-md">
+              <p className="text-error-600 text-sm">{submitError}</p>
+            </div>
+          )}
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
@@ -250,9 +273,13 @@ const ContactForm: React.FC = () => {
           </div>
           
           <div className="text-center md:text-right">
-            <button type="submit" className="btn btn-primary">
+            <button 
+              type="submit" 
+              disabled={isSubmitting || !captchaToken}
+              className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Send size={20} className="mr-2" />
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </div>
           
