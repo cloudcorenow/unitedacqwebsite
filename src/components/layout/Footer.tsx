@@ -1,71 +1,78 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Scale } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
-export default function Footer() {
+const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="bg-[#E5C93C] p-2 rounded-lg">
-                <Scale className="h-6 w-6 text-[#2A5F9E]" />
-              </div>
-              <div>
-                <div className="font-bold text-lg">United Acquisitions LLC</div>
-                <div className="text-sm text-gray-400">Professional Debt Recovery</div>
-              </div>
-            </div>
-            <p className="text-gray-400 text-sm max-w-md">
-              We provide professional, compliant, and effective debt collection services
-              with a focus on maintaining positive relationships.
+    <footer className="bg-primary-800 text-white">
+      <div className="container-custom py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <Link to="/" className="text-xl font-bold text-white mb-4 block">
+              United Acquisitions LLC
+            </Link>
+            <p className="text-gray-300 mb-4">
+              Professional debt collection and recovery services with integrity, compliance, and exceptional results.
             </p>
           </div>
-
+          
+          {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-400 hover:text-[#E5C93C] transition-colors">About Us</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-[#E5C93C] transition-colors">Services</Link></li>
-              <li><Link to="/resources" className="text-gray-400 hover:text-[#E5C93C] transition-colors">Resources</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-[#E5C93C] transition-colors">Contact</Link></li>
-              <li><Link to="/legal" className="text-gray-400 hover:text-[#E5C93C] transition-colors">Legal</Link></li>
+              <li><Link to="/" className="text-gray-300 hover:text-secondary-500 transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-secondary-500 transition-colors">About Us</Link></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-secondary-500 transition-colors">Our Services</Link></li>
+              <li><Link to="/resources" className="text-gray-300 hover:text-secondary-500 transition-colors">Resources</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-secondary-500 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
-
+          
+          {/* Legal */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Info</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start space-x-2">
-                <Mail className="h-5 w-5 text-[#E5C93C] flex-shrink-0 mt-0.5" />
-                <a href="mailto:info@unitedacq.com" className="text-gray-400 hover:text-[#E5C93C] transition-colors">
-                  info@unitedacq.com
-                </a>
+            <h3 className="text-lg font-bold mb-4 text-white">Legal</h3>
+            <ul className="space-y-2">
+              <li><Link to="/legal" className="text-gray-300 hover:text-secondary-500 transition-colors">Terms of Use</Link></li>
+              <li><Link to="/legal" className="text-gray-300 hover:text-secondary-500 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/legal" className="text-gray-300 hover:text-secondary-500 transition-colors">SMS Consent</Link></li>
+              <li><Link to="/resources" className="text-gray-300 hover:text-secondary-500 transition-colors">FDCPA Compliance</Link></li>
+            </ul>
+          </div>
+          
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-bold mb-4 text-white">Contact Us</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <MapPin size={20} className="text-secondary-500 mr-2 mt-1 flex-shrink-0" />
+                <span className="text-gray-300">1111 E. Katella Ave Suite 270<br />Orange, CA 92867</span>
               </li>
-              <li className="flex items-start space-x-2">
-                <Phone className="h-5 w-5 text-[#E5C93C] flex-shrink-0 mt-0.5" />
-                <a href="tel:+1234567890" className="text-gray-400 hover:text-[#E5C93C] transition-colors">
-                  (123) 456-7890
-                </a>
+              <li className="flex items-center">
+                <Phone size={20} className="text-secondary-500 mr-2 flex-shrink-0" />
+                <a href="tel:+18555551234" className="text-gray-300 hover:text-secondary-500 transition-colors">800-604-4310</a>
               </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="h-5 w-5 text-[#E5C93C] flex-shrink-0 mt-0.5" />
-                <span className="text-gray-400">
-                  Professional Services<br />United States
-                </span>
+              <li className="flex items-center">
+                <Mail size={20} className="text-secondary-500 mr-2 flex-shrink-0" />
+                <a href="mailto:info@unitedacq.com" className="text-gray-300 hover:text-secondary-500 transition-colors">info@unitedacq.com</a>
               </li>
             </ul>
           </div>
         </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} United Acquisitions LLC. All rights reserved.</p>
-          <p className="mt-2">
-            Licensed and compliant with FDCPA regulations
+        
+        <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
+          <p>
+            &copy; {currentYear} United Acquisitions LLC. All rights reserved.
+          </p>
+          <p className="mt-2 text-sm">
+            This is a debt collection company. This is an attempt to collect a debt and any information obtained will be used for that purpose.
           </p>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

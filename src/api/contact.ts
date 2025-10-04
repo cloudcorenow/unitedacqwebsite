@@ -1,4 +1,4 @@
-interface ContactFormData {
+export interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
@@ -7,28 +7,25 @@ interface ContactFormData {
   captchaToken: string;
 }
 
-interface ContactFormResponse {
-  success: boolean;
-  error?: string;
-  data?: any;
-}
-
-export async function submitContactForm(formData: ContactFormData): Promise<ContactFormResponse> {
+export async function handleContactSubmission(formData: ContactFormData) {
+  // Validate required fields
   if (!formData.name || !formData.email || !formData.message) {
     return {
       success: false,
-      error: 'Name, email, and message are required.',
+      error: 'Name, email, and message are required fields.'
     };
   }
 
+  // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(formData.email)) {
     return {
       success: false,
-      error: 'Please enter a valid email address.',
+      error: 'Please enter a valid email address.'
     };
   }
 
+  // Validate CAPTCHA token
   if (!formData.captchaToken) {
     return {
       success: false,
@@ -37,7 +34,9 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
   }
 
   try {
-    const response = await fetch('/api/contact', {
+    const workerUrl = import.meta.env.VITE_WORKER_URL || 'https://contact-handler.YOUR_SUBDOMAIN.workers.dev';
+
+    const response = await fetch(workerUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,19 +49,23 @@ export async function submitContactForm(formData: ContactFormData): Promise<Cont
     if (result.success) {
       return {
         success: true,
-        data: result.data,
+        message: 'Thank you for your message. We will contact you shortly.'
       };
     } else {
+      console.error('Backend error:', result);
+      const errorMessage = result.details && result.details.length > 0
+        ? `CAPTCHA Error: ${result.details.join(', ')}`
+        : result.error || 'Failed to send message. Please try again.';
       return {
         success: false,
-        error: result.error || 'Failed to send message.',
+        error: errorMessage
       };
     }
   } catch (error) {
-    console.error('Error submitting contact form:', error);
+    console.error('Contact form submission error:', error);
     return {
       success: false,
-      error: 'Network error. Please try again later.',
+      error: 'An unexpected error occurred. Please try again later.'
     };
   }
 }

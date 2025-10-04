@@ -1,88 +1,138 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import PageHeader from '../components/common/PageHeader';
+import SectionTitle from '../components/common/SectionTitle';
 
-export default function LegalPage() {
+const LegalPage: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Legal Information | United Acquisitions LLC';
+  }, []);
+
   return (
-    <div className="bg-white">
-      <section className="bg-gradient-to-r from-[#2A5F9E] to-[#1e4675] text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Legal Information</h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Privacy policy, terms of service, and regulatory compliance
-            </p>
-          </motion.div>
+    <>
+      <PageHeader 
+        title="Legal Information" 
+        subtitle="Terms of Use, Privacy Policy, and Important Disclosures"
+        backgroundImage="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      />
+      
+      <section className="section">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <SectionTitle
+                title="Terms and Conditions"
+                subtitle="Last Updated: January 1, 2025"
+              />
+              
+              <div className="prose max-w-none">
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Use of Information and Materials</h3>
+                <p className="mb-6">
+                  United Acquisitions LLC reserves the right, at its sole discretion, to modify these Terms of Use, temporarily or permanently discontinue the site or any portion thereof, at any time and for any reason, without prior notice. The information, materials, terms, and descriptions on this site are subject to change.
+                </p>
+                <p className="mb-6">
+                  Unauthorized use of the United Acquisitions LLC website, including but not limited to unauthorized access to systems, misuse of passwords, or any improper use of information on the site, is strictly prohibited. Availability of products and services may vary by geographic location and is subject to final determination by United Acquisitions LLC. Your continued use of this site after any modifications take effect constitutes your acceptance of the updated Terms of Use.
+                </p>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Electronic Communications Consent</h3>
+                <p className="mb-6">
+                  By using our services, you agree to receive all notices, disclosures, and communications electronically. United Acquisitions LLC may contact you via email, SMS (text messages), phone calls (including prerecorded or automated messages), or other provided contact methods.
+                </p>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Text Messaging (SMS) Consent</h3>
+                <p className="mb-4">
+                  By providing your phone number, you expressly consent to receive SMS (text messages) from United Acquisitions LLC, its agents, representatives, affiliates, or anyone calling on our behalf, including through automated dialing systems, artificial voice messages, and prerecorded messages.
+                </p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Message frequency may vary depending on your account status and interactions.</li>
+                  <li>Standard messaging and data rates may apply per your mobile carrier's terms.</li>
+                  <li>Consent to receive text messages is not required as a condition of purchasing any products or services.</li>
+                </ul>
+
+                <h4 className="text-lg font-bold text-primary-800 mb-3">Opting Out of SMS Communications</h4>
+                <p className="mb-4">You may opt out of receiving text messages at any time by:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Replying "STOP" to any text message you receive from us.</li>
+                  <li>Calling our customer service at (800)-604-4310.</li>
+                  <li>Emailing info@unitedacq.com with the subject line "Opt-Out of Text Messages", including your full name, phone number, and a request to stop SMS communications.</li>
+                </ul>
+
+                <h4 className="text-lg font-bold text-primary-800 mb-3">Certification of Phone Number Ownership</h4>
+                <p className="mb-4">By providing your phone number, you certify that:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>The number belongs to you and not someone else.</li>
+                  <li>You are authorized to receive calls and messages at that number.</li>
+                  <li>You will notify us if you stop using or change the number.</li>
+                </ul>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Limitation of Liability</h3>
+                <p className="mb-8">
+                  United Acquisitions LLC is not liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use this site, including system failures, errors, omissions, or interruptions, even if advised of the possibility of such damages.
+                </p>
+
+                <SectionTitle
+                  title="Privacy Policy"
+                  subtitle="Effective Date: January 1, 2025"
+                />
+
+                <p className="mb-6">
+                  This Privacy Policy replaces all previous versions and governs how United Acquisitions LLC ("we," "our") collects, uses, and protects personal information obtained through our website www.unitedacq.com.
+                </p>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Information We Collect</h3>
+                <p className="mb-4">We may collect personal information when you:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Visit our website</li>
+                  <li>Submit forms or applications</li>
+                  <li>Subscribe to newsletters or updates</li>
+                  <li>Make payments</li>
+                </ul>
+
+                <p className="mb-4">The types of information we collect may include:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Personal identifiers: Name, address, phone number, email, date of birth</li>
+                  <li>Financial information: Social Security number, income, account balances, payment history</li>
+                  <li>Credit information: Credit history and scores</li>
+                  <li>Banking details: Bank name, routing number, account type, and account number</li>
+                </ul>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">How We Use Your Information</h3>
+                <p className="mb-4">Your information may be used to:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Improve customer service and support</li>
+                  <li>Process transactions or assist with online activities</li>
+                  <li>Send updates and communications related to your account</li>
+                  <li>Share relevant services or offers from trusted partners</li>
+                </ul>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Data Security & Sharing</h3>
+                <p className="mb-6">
+                  Personal financial information is securely stored and accessible only to authorized personnel, affiliates, service providers, and legal/regulatory entities as required by law. We do not sell or share your personal information with third parties for marketing purposes.
+                </p>
+
+                <p className="mb-4">We may disclose your information to:</p>
+                <ul className="list-disc pl-6 mb-6">
+                  <li>Government agencies for legal compliance</li>
+                  <li>Authorized service providers who assist in account management</li>
+                  <li>Entities acquiring or servicing your account</li>
+                </ul>
+
+                <h3 className="text-xl font-bold text-primary-800 mb-4">Consent & Updates</h3>
+                <p className="mb-6">
+                  By using our website, you consent to this Privacy Policy. Any changes will be posted here. For questions, contact us at info@unitedacq.com.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
-
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h2>
-            <div className="prose prose-lg text-gray-600 space-y-4">
-              <p>
-                United Acquisitions LLC is committed to protecting your privacy and maintaining the
-                confidentiality of your personal information.
-              </p>
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Information We Collect</h3>
-              <p>
-                We collect information necessary to conduct our business, including contact information,
-                account details, and payment history. This information is collected through various means
-                including creditor submissions and public records.
-              </p>
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">How We Use Information</h3>
-              <p>
-                We use collected information solely for debt recovery purposes and as required by law.
-                We do not sell or share your personal information with third parties except as necessary
-                to fulfill our collection services or as required by law.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Terms of Service</h2>
-            <div className="prose prose-lg text-gray-600 space-y-4">
-              <p>
-                By using this website or engaging with United Acquisitions LLC, you agree to these terms.
-              </p>
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Service Scope</h3>
-              <p>
-                United Acquisitions LLC provides professional debt collection services in compliance
-                with all applicable federal and state laws, including the Fair Debt Collection
-                Practices Act (FDCPA).
-              </p>
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Disclaimer</h3>
-              <p>
-                This website provides general information only and does not constitute legal advice.
-                For specific questions about your account or rights, please contact us directly.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Regulatory Compliance</h2>
-            <div className="prose prose-lg text-gray-600 space-y-4">
-              <p>
-                United Acquisitions LLC maintains strict compliance with:
-              </p>
-              <ul className="list-disc list-inside space-y-2">
-                <li>Fair Debt Collection Practices Act (FDCPA)</li>
-                <li>Fair Credit Reporting Act (FCRA)</li>
-                <li>Telephone Consumer Protection Act (TCPA)</li>
-                <li>All applicable state debt collection laws</li>
-              </ul>
-              <p className="mt-6">
-                We are properly licensed and bonded in all jurisdictions where required. Our staff
-                receives regular training on compliance requirements and consumer rights.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   );
-}
+};
+
+export default LegalPage;
