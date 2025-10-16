@@ -63,7 +63,7 @@ const Stats: React.FC = () => {
               Email Us
             </h3>
             <p className="text-gray-600 group-hover:text-white transition-colors">
-              info@unitedack.com
+              info@unitedacq.com
             </p>
           </motion.a>
 
