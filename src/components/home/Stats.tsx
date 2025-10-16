@@ -44,7 +44,7 @@ const Stats: React.FC = () => {
               Call Us
             </h3>
             <p className="text-gray-600 group-hover:text-white transition-colors">
-              1-888-755-5323
+              1-800-604-4310
             </p>
           </motion.a>
 
