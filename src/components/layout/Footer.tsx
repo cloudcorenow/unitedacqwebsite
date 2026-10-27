@@ -67,6 +67,9 @@ const Footer: React.FC = () => {
             &copy; {currentYear} United Acquisitions LLC. All rights reserved.
           </p>
           <p className="mt-2 text-sm">
+            California DFPI License #10757-99
+          </p>
+          <p className="mt-2 text-sm">
             This is a debt collection company. This is an attempt to collect a debt and any information obtained will be used for that purpose.
           </p>
         </div>
