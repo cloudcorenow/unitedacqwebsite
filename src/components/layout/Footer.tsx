@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="text-secondary-500 mr-2 flex-shrink-0" />
-                <a href="tel:+18555551234" className="text-gray-300 hover:text-secondary-500 transition-colors">800-604-4310</a>
+                <a href="tel:+18006044310" className="text-gray-300 hover:text-secondary-500 transition-colors">800-604-4310</a>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="text-secondary-500 mr-2 flex-shrink-0" />
@@ -65,6 +65,9 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
           <p>
             &copy; {currentYear} United Acquisitions LLC. All rights reserved.
+          </p>
+          <p className="mt-2 text-sm">
+            California DFPI License #10757-99
           </p>
           <p className="mt-2 text-sm">
             This is a debt collection company. This is an attempt to collect a debt and any information obtained will be used for that purpose.
