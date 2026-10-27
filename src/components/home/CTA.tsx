@@ -33,7 +33,7 @@ const CTA: React.FC = () => {
             <Link to="/contact" className="btn btn-secondary text-lg">
               Contact Us
             </Link>
-            <a href="tel:+18555551234" className="btn bg-white text-primary-800 hover:bg-gray-100 text-lg">
+            <a href="tel:+18006044310" className="btn bg-white text-primary-800 hover:bg-gray-100 text-lg">
               <PhoneCall size={20} className="mr-2" />
               800-604-4310
             </a>
